@@ -1,6 +1,7 @@
 package com.airportmanagement.rest.city;
-import java.util.Optional;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CityService {
@@ -18,13 +19,14 @@ public class CityService {
         return cityRepository.save(city);
     }
 
-    public Optional<City> getCityById(Long id) {
-        return cityRepository.findById(id);
+    public City getCityById(Long id) {
+        return cityRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "City not found"));
     }
 
     public City updateCity(Long id, City updatedCity) {
-        City city = cityRepository.findById(id).orElseThrow();
-
+        City city = getCityById(id);
         city.setName(updatedCity.getName());
         city.setProvince(updatedCity.getProvince());
         city.setPopulation(updatedCity.getPopulation());
@@ -33,6 +35,7 @@ public class CityService {
     }
 
     public void deleteCityById(Long id) {
+        getCityById(id);
         cityRepository.deleteById(id);
     }
 }

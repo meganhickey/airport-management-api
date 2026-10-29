@@ -1,7 +1,6 @@
 package com.airportmanagement.rest.city;
 
 import org.springframework.web.bind.annotation.*;
-import java.util.Optional;
 
 @RequestMapping("/api/cities")
 @RestController
@@ -23,7 +22,7 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    public Optional<City> getCityById(@PathVariable Long id) {
+    public City getCityById(@PathVariable Long id) {
         return cityService.getCityById(id);
     }
 
