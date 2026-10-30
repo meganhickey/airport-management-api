@@ -2,6 +2,8 @@ package com.airportmanagement.rest.city;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class CityService {
@@ -9,6 +11,10 @@ public class CityService {
 
     public CityService(CityRepository cityRepository) {
         this.cityRepository = cityRepository;
+    }
+
+    public Page<City> getAllCities(Pageable pageable) {
+        return cityRepository.findAll(pageable);
     }
 
     public Iterable<City> getAllCities() {

@@ -29,7 +29,7 @@ public class AirportServiceTest {
         City city = new City("St. John's", "Newfoundland and Labrador", 110000);
 
         // Mock the repository to return a list of airports
-        Iterable<Airport> mockAirports = List.of(
+        List<Airport> mockAirports = List.of(
                 new Airport(city, "St. John's International Airport", "YYT")
         );
 
