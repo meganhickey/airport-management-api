@@ -1,6 +1,8 @@
 package com.airportmanagement.rest.city;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RequestMapping("/api/cities")
 @RestController
@@ -14,6 +16,11 @@ public class CityController {
     @GetMapping
     public Iterable<City> getAllCities() {
         return cityService.getAllCities();
+    }
+
+    @GetMapping("/paged")
+    public Page<City> getCitiesPaged(Pageable pageable) {
+        return cityService.getAllCities(pageable);
     }
 
     @PostMapping

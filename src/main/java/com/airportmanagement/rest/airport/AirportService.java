@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import com.airportmanagement.rest.city.CityRepository;
 import com.airportmanagement.rest.city.City;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class AirportService {
@@ -13,6 +15,10 @@ public class AirportService {
     public AirportService(AirportRepository airportRepository, CityRepository cityRepository) {
         this.airportRepository = airportRepository;
         this.cityRepository = cityRepository;
+    }
+
+    public Page<Airport> getAirportsPaged(Pageable pageable) {
+        return airportRepository.findAll(pageable);
     }
 
     public Iterable<Airport> getAllAirports() {

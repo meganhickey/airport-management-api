@@ -1,5 +1,4 @@
 package com.airportmanagement.rest.airport;
-import org.springframework.data.repository.CrudRepository;
-
-public interface AirportRepository extends CrudRepository<Airport, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
+public interface AirportRepository extends JpaRepository<Airport, Long> {
 }

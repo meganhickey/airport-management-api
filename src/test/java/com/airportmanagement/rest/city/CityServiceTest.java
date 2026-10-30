@@ -21,7 +21,7 @@ public class CityServiceTest {
     @Test
     void testGetAllCities() {
         // Mock the repository to return a list of cities
-        Iterable<City> mockCities = List.of(
+        List<City> mockCities = List.of(
                 new City("Mount Pearl", "Newfoundland and Labrador",22000)
         );
 
