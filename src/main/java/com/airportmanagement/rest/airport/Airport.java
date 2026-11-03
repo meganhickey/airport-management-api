@@ -1,6 +1,10 @@
 package com.airportmanagement.rest.airport;
+import com.airportmanagement.rest.aircraft.Aircraft;
 import com.airportmanagement.rest.city.City;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Airport {
@@ -14,6 +18,9 @@ public class Airport {
 
     private String name;
     private String code;
+
+    @ManyToMany(mappedBy = "airports")
+    private List<Aircraft> aircraft = new ArrayList<Aircraft>();
 
     public Airport() {
     }
@@ -52,4 +59,11 @@ public class Airport {
         this.code = code;
     }
 
+    public List<Aircraft> getAircraft() {
+        return aircraft;
+    }
+
+    public void setAircraft(List<Aircraft> aircraft) {
+        this.aircraft = aircraft;
+    }
 }
